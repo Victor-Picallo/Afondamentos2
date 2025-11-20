@@ -96,7 +96,6 @@ public class ecuaciones {
 
     }
 
-
     // Vector columna de terminos independientes 3x1
     public static double[] pedirTerminosIndependientes3x1() {
         double[] terminosIndependientes = new double[3];
@@ -109,27 +108,27 @@ public class ecuaciones {
     }
 
     public static double determinante3x3(double[][] matriz) {
-        return    matriz[0][0] * (matriz[1][1] * matriz[2][2] - matriz[1][2] * matriz[2][1])
+        return matriz[0][0] * (matriz[1][1] * matriz[2][2] - matriz[1][2] * matriz[2][1])
                 - matriz[0][1] * (matriz[1][0] * matriz[2][2] - matriz[1][2] * matriz[2][0])
                 + matriz[0][2] * (matriz[1][0] * matriz[2][1] - matriz[1][1] * matriz[2][0]);
     }
 
     // Determinante para x y z
-    public static double deteterminanteX3(double[][] Matriz, double[] terminos){
+    public static double deteterminanteX3(double[][] Matriz, double[] terminos) {
         double x = (terminos[0] * (Matriz[1][1] * Matriz[2][2] - Matriz[1][2] * Matriz[2][1])
                 - Matriz[0][1] * (terminos[1] * Matriz[2][2] - Matriz[1][2] * terminos[2])
                 + Matriz[0][2] * (terminos[1] * Matriz[2][1] - Matriz[1][1] * terminos[2]));
         return x;
     }
 
-    public static double deteterminanteY3(double[][] Matriz, double[] terminos){
+    public static double deteterminanteY3(double[][] Matriz, double[] terminos) {
         double y = (Matriz[0][0] * (terminos[1] * Matriz[2][2] - Matriz[1][2] * terminos[2])
                 - terminos[0] * (Matriz[1][0] * Matriz[2][2] - Matriz[1][2] * Matriz[2][0])
                 + Matriz[0][2] * (Matriz[1][0] * terminos[2] - terminos[1] * Matriz[2][0]));
         return y;
     }
 
-    public static double deteterminanteZ3(double[][] Matriz, double[] terminos){
+    public static double deteterminanteZ3(double[][] Matriz, double[] terminos) {
         double z = (Matriz[0][0] * (Matriz[1][1] * terminos[2] - terminos[1] * Matriz[2][1])
                 - Matriz[0][1] * (Matriz[1][0] * terminos[2] - terminos[1] * Matriz[2][0])
                 + terminos[0] * (Matriz[1][0] * Matriz[2][1] - Matriz[1][1] * Matriz[2][0]));
@@ -148,12 +147,12 @@ public class ecuaciones {
         return matrizCoeficientes;
     }
 
-    public static double[][] pedirTerminosIndependientes3x1UnoAUno() {
-        double[][] terminosIndependientes = new double[3][1];
+    public static double[] pedirTerminosIndependientes3x1UnoAUno() {
+        double[] terminosIndependientes = new double[3];
         java.util.Scanner scanner = new java.util.Scanner(System.in);
         for (int i = 0; i < 3; i++) {
             System.out.print("Introduce el término independiente de la ecuación " + (i + 1) + ": ");
-            terminosIndependientes[i][0] = scanner.nextDouble();
+            terminosIndependientes[i] = scanner.nextDouble();
         }
         return terminosIndependientes;
     }
@@ -170,18 +169,17 @@ public class ecuaciones {
     }
 
     public static void mostrarSoluciones3x3(double[][] matrizCoeficientes, double[] terminosIndependientes) {
-        double solucionX = deteterminanteX3(matrizCoeficientes, terminosIndependientes) / determinante3x3(matrizCoeficientes);
-        double solucionY = deteterminanteY3(matrizCoeficientes, terminosIndependientes) / determinante3x3(matrizCoeficientes);
-        double solucionZ = deteterminanteZ3(matrizCoeficientes, terminosIndependientes) / determinante3x3(matrizCoeficientes);
+        double solucionX = deteterminanteX3(matrizCoeficientes, terminosIndependientes)
+                / determinante3x3(matrizCoeficientes);
+        double solucionY = deteterminanteY3(matrizCoeficientes, terminosIndependientes)
+                / determinante3x3(matrizCoeficientes);
+        double solucionZ = deteterminanteZ3(matrizCoeficientes, terminosIndependientes)
+                / determinante3x3(matrizCoeficientes);
         System.out.println("La solución del sistema de ecuaciones es:");
-        System.out.println("x = " + solucionX);
-        System.out.println("y = " + solucionY);
-        System.out.println("z = " + solucionZ);
+        System.out.printf("x = %.2f\n", solucionX);
+        System.out.printf("y = %.2f\n", solucionY);
+        System.out.printf("z = %.2f\n", solucionZ);
+
     }
 
 }
-
-
-
-
-
